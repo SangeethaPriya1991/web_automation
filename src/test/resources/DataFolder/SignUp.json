@@ -1,0 +1,18 @@
+{
+  "name" : "Katelin",
+  "email" : "kate123@example.com",
+  "password": "kate123#",
+  "day" : "12",
+  "month" : "January",
+  "year" : "1996",
+  "firstName" : "Katelin",
+  "lastName" : "Grace",
+  "companyName": "HCL",
+  "address1" : "2,Zion Nagar",
+  "address2" : "Rangampalayam",
+  "country" : "India",
+  "state" : "Tamilnadu",
+  "city" : "Chennai",
+  "zip" : "638012",
+  "phone" : "9150123452"
+}

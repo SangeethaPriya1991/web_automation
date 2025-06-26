@@ -1,8 +1,6 @@
 package AutomationExercise;
 
 import Hooks.Hooks;
-import Utility.DriverManager;
-import io.cucumber.messages.types.Hook;
 import org.openqa.selenium.support.ui.*;
 
 import java.time.Duration;
@@ -14,8 +12,6 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.Assert;
-
-import javax.swing.text.Utilities;
 
 public class Productpage {
     private WebDriver driver;

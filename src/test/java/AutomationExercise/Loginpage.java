@@ -4,45 +4,56 @@ import Hooks.Hooks;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
 
 public class Loginpage {
 
-     WebDriver driver;
+    WebDriver driver;
 
-    private  By emailInputLocator=By.name("email");
-    private  By passwordInputLocator=By.name("password");
-    private  By loginButtonLocator=By.cssSelector("button");
-    private  By logoutLinkLocator = By.linkText("Logout");
-
-    public Loginpage(){
-        this.driver= Hooks.driver;
-       // PageFactory.initElements(driver, this);
+    public Loginpage() {
+        this.driver = Hooks.driver;
+        PageFactory.initElements(driver, this);
     }
 
-    public void enterEmail(String email){
-        WebElement emailInput = driver.findElement(emailInputLocator);
-        emailInput.sendKeys(email);
+    @FindBy(name = "email")
+    WebElement emailInputLocator;
+    @FindBy(name = "password")
+    WebElement passwordInputLocator;
+    @FindBy(css = "button")
+    WebElement loginButtonLocator;
+    @FindBy(linkText = "Logout")
+    WebElement logoutLinkLocator;
+    @FindBy(css = "p[style='color: red;']")
+    WebElement errorMessageLocator;
+    @FindBy(xpath = "//*[@id=\"form\"]/div/div/div[1]/div/form/input[2]")
+    WebElement emailError;
+
+    public void ValidLogin(String emailaddress, String password){
+        emailInputLocator.sendKeys(emailaddress);
+        passwordInputLocator.sendKeys(password);
     }
-    public void enterPassword(String password){
-        WebElement passwordInput = driver.findElement(passwordInputLocator);
-        passwordInput.sendKeys(password);
+
+    public void Invalidlogin(String email, String password) {
+        emailInputLocator.sendKeys(email);
+        passwordInputLocator.sendKeys(password);
     }
-    public void clickLoginButton(){
-        WebElement loginButton = driver.findElement(loginButtonLocator);
-        loginButton.click();
+
+    public void clickLoginButton() {
+        loginButtonLocator.click();
     }
+
     public boolean checkLogoutLink() {
-        return driver.findElements(logoutLinkLocator).getFirst().isDisplayed();
+
+        return logoutLinkLocator.isDisplayed();
     }
 
-    public void login(String email, String password){
-            enterEmail(email);
-            enterPassword(password);
-            clickLoginButton();
-        }
-
-        public String getEmailValidationMessage(){
-         return  driver.findElement(emailInputLocator).getAttribute("validationMessage");
-        }
-
+    public boolean isErrorDisplayed() {
+        return errorMessageLocator.isDisplayed();
     }
+     public String getEmailValidationMessage() {
+        return emailInputLocator.getAttribute("validationMessage");
+     }
+
+
+}
